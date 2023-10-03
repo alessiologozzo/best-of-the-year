@@ -1,0 +1,8 @@
+<div th:fragment="card(title, path)" class="h-100 card bg-secondary border border-dark text-light">
+    <div class="card-title text-center p-3">
+        <h4 th:text = "${title}"></h4>
+    </div>
+    <div class="card-body custom-border">
+        <img th:src="@{${path}}" th:alt="${path}">
+    </div>
+</div>

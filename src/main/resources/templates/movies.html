@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Movies')}"></head>
+<body>
+    <nav th:replace="~{fragments/navbar :: nav()}"></nav>
+        <div class="container py-4">
+            <h1 th:text="'The Best by ' + ${name}" class="text-center"></h1>
+
+            <h2 class="pt-5 pb-1">Movies</h2>
+            <div class="row">
+                <th:block th:each="movie: ${movies}">
+                    <div class="col-12 col-md-4 my-4">
+                        <a th:href="@{/movies/{id}(id=${movie.getId()})}" class="hoverable">
+                            <div th:replace="~{fragments/card :: card(${movie.getTitle()}, ${movie.getPath()})}"></div>
+                        </a>
+                    </div>
+                </th:block>
+            </div>
+            
+            <a th:href="@{/}" class="btn btn-outline-info fs-4 mt-5">Home</a>
+        </div>  
+</body>
+</html>

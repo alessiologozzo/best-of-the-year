@@ -19,28 +19,55 @@ public class MyController {
 	@GetMapping("/")
 	public String home(Model model) {
 		model.addAttribute("name", "Alessio");
-		model.addAttribute("movies", movies);
-		model.addAttribute("songs", songs);
 
 		return "home.html";
 	}
 
+	@GetMapping("/movies")
+	public String movies(Model model) {
+		model.addAttribute("name", "Alessio");
+		model.addAttribute("movies", movies);
+		
+		return "movies.html";
+	}
+
+	@GetMapping("/songs")
+	public String songs(Model model) {
+		model.addAttribute("name", "Alessio");
+		model.addAttribute("songs", songs);
+		
+		return "songs.html";
+	}
+
 	@GetMapping("/movies/{id}")
 	public String movie(@PathVariable int id, Model model) {
-		model.addAttribute("name", "Alessio");
-		model.addAttribute("movie",
-				search(movies, id) ? getSearchable(movies, id) : new Movie("Movie not found", "", false));
+		String page = "movie.html";
 
-		return "movie.html";
+		if (search(movies, id)) {
+			model.addAttribute("name", "Alessio");
+			model.addAttribute("movie", getSearchable(movies, id));
+		} else
+			page = "error.html";
+
+		return page;
 	}
 
 	@GetMapping("/songs/{id}")
 	public String song(@PathVariable int id, Model model) {
-		model.addAttribute("name", "Alessio");
-		model.addAttribute("song",
-				search(songs, id) ? getSearchable(songs, id) : new Song("Song not found", "", false));
+		String page = "song.html";
 
-		return "song.html";
+		if (search(songs, id)) {
+			model.addAttribute("name", "Alessio");
+			model.addAttribute("song", getSearchable(songs, id));
+		} else
+			page = "error.html";
+
+		return page;
+	}
+
+	@GetMapping("/error")
+	public String error() {
+		return "error.html";
 	}
 
 	private boolean search(List<Searchable> list, int id) {

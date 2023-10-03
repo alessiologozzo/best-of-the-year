@@ -1,0 +1,15 @@
+<nav th:fragment="nav()" class="d-flex gap-5">
+    <div class="logo-container me-md-5">
+        <a th:href="@{/}">
+            <img th:src="@{/images/logo.png}" alt="logo">
+        </a>
+    </div>
+
+    <div class="h-100 d-flex align-items-center gap-2 gap-md-4 border-start">
+        <a th:if="@{${movies} == null}" th:href="@{/movies}" class="btn btn-outline-light fs-4 fs-md-3 ms-3 ms-md-5">Movies</a>
+        <a th:unless="@{${movies} == null}" th:href="@{/movies}" class="btn btn-outline-success fs-4 fs-md-3 ms-3 ms-md-5">Movies</a>
+
+        <a th:if="@{${songs} == null}" th:href="@{/songs}" class="btn btn-outline-light fs-4 fs-md-3">Songs</a>
+        <a th:unless="@{${songs} == null}" th:href="@{/songs}" class="btn btn-outline-success fs-4 fs-md-3">Songs</a>
+    </div>
+</nav>
